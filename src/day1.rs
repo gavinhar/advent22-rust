@@ -2,14 +2,14 @@ use std::io;
 
 pub fn solution() -> u32 {
     let mut total: u32 = 0;
-    let mut totals = Vec::new();
+    let mut totals: Vec<u32> = Vec::new();
 
     loop {
-        let mut line = String::new();
-        let bytes = io::stdin().read_line(&mut line).expect("Fail");
+        let mut line: String = String::new();
+        let bytes: usize = io::stdin().read_line(&mut line).expect("Fail");
         if bytes == 0 {
             totals.sort();
-            let len = totals.len();
+            let len: usize = totals.len();
             return totals[len - 1] + totals[len - 2] + totals[len - 3];
         }
 
@@ -18,11 +18,10 @@ pub fn solution() -> u32 {
             Err(_) => 0,
         };
 
+        total += cals;
         if cals == 0 {
             totals.push(total);
             total = 0;
-        } else {
-            total += cals;
         }
     }
 }
